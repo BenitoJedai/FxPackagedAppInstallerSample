@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<title>サンプルパッケージアプリ インストーラー</title>
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script>
+$(function(){
+    $("#install").on("click", function(){
+        install();
+    });
+});
+var install = function() {
+    var manifestUrl = 'http://bari-ikutsu.com/_fxos_sample_app/manifest.webapp';
+    var req = navigator.mozApps.installPackage(manifestUrl);
+    req.onsuccess = function() {
+//      alert(this.result.origin);
+    };
+    req.onerror = function() {
+        alert(this.error.name);
+    };
+};
+</script>
+</head>
+<body>
+<div class="container">
+    <h3>サンプルパッケージアプリ<br/>Firefox OS インストーラー</h3>
+    <button id="install" class="btn btn-default btn-block">インストール</button>
+</div>
+</body>
+</html>
